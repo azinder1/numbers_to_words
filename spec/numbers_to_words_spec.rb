@@ -18,4 +18,13 @@ describe('Fixnum#numbers_to_words') do
   it ('hundred digits number') do
     expect(237.numbers_to_words).to(eq("two hundred thirty seven"))
   end
+  it ('thousand digits number') do
+    expect(1237.numbers_to_words).to(eq("one thousand two hundred thirty seven"))
+  end
+  it ('million digits number') do
+    expect(12097092.numbers_to_words).to(eq("twelve million ninety seven thousand ninety two"))
+  end
+  it ('million digits number') do
+    expect(32109210115.numbers_to_words).to(eq("thirty two billion one hundred nine million two hundred ten thousand one hundred fifteen"))
+  end
 end
