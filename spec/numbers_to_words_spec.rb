@@ -24,7 +24,10 @@ describe('Fixnum#numbers_to_words') do
   it ('million digits number') do
     expect(12097092.numbers_to_words).to(eq("twelve million ninety seven thousand ninety two"))
   end
-  it ('million digits number') do
-    expect(32109210115.numbers_to_words).to(eq("thirty two billion one hundred nine million two hundred ten thousand one hundred fifteen"))
+  it ('trillion digits number') do
+    expect(999999999999999.numbers_to_words).to(eq("nine hundred ninety nine trillion nine hundred ninety nine billion nine hundred ninety nine million nine hundred ninety nine thousand nine hundred ninety nine"))
+  end
+  it ('handles numbers with 0s in placeholder') do
+    expect(900000000000000.numbers_to_words).to(eq("nine hundred trillion"))
   end
 end

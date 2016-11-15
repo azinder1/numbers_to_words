@@ -29,33 +29,30 @@ class Fixnum
       end
       word_array.join(" ")
     }
-    number_array = self.to_s.split("").map(&:to_i).reverse()
+
     final_array = []
     block_array = []
+
+    number_array = self.to_s.split("").map(&:to_i).reverse()
+
     while (number_array.length/3.0).ceil() > 0 do
        block_array.push(number_array.slice!(0..2))
     end
 
-    get_hundreds.call(number_array)
-
     block_array.each().with_index() do |placeholder, i|
         if i == 0
+          if placeholder.at(0) == 0  and placeholder.at(1) == 0  and  placeholder.at(2) == 0
+          else
           final_array.push(get_hundreds.call(placeholder))
-        elsif i == 1
-          final_array.unshift(value_placeholder.fetch(i))
-          final_array.unshift(get_hundreds.call(placeholder))
-        elsif i == 2
-          final_array.unshift(value_placeholder.fetch(i))
-          final_array.unshift(get_hundreds.call(placeholder))
-        elsif i == 3
-          final_array.unshift(value_placeholder.fetch(i))
-          final_array.unshift(get_hundreds.call(placeholder))
-        elsif i == 4
-          final_array.unshift(value_placeholder.fetch(i))
-          final_array.unshift(get_hundreds.call(placeholder))
+        end
+        elsif i >= 1
+          if placeholder.at(0) == 0  and placeholder.at(1) == 0  and  placeholder.at(2) == 0
+          else
+            final_array.unshift(value_placeholder.fetch(i))
+            final_array.unshift(get_hundreds.call(placeholder))
+          end
         end
     end
-
     final_array.join(" ")
   end
 end
